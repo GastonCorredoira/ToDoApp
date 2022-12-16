@@ -12,10 +12,12 @@ nav li.nav-item a:hover {
 }
 
 #wrapper {
-    height: 60%;
+    height: 100%;
     width: 100%;
     display: table;
     overflow: hidden;
+    background-image: url('https://raw.githubusercontent.com/GastonCorredoira/ToDoApp/master/img/logInBackground.png');
+    background-size: cover;
 }
 
 #contenedor {

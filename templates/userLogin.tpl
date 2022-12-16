@@ -3,11 +3,7 @@
     <div id="contenedor">
         <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" id="divContent" style="max-width: 1200px;">
             <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="https://i.scdn.co/image/ab67706f0000000395c94a38840f54b062b8739d"
-                        class="img-fluid rounded-start" alt="loginPhoto">
-                </div>
-                <div class="col-md-7" style="margin-left: 10px;">
+                <div class="col-md-8">
                     <div class="card-body">
                         <h3 style="margin-bottom: 10px;">Sign In</h3>
                         <form method="POST" action="verifyLogin" name="login" id="login">
@@ -31,9 +27,12 @@
                         </form>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <img src="https://i.scdn.co/image/ab67706f0000000395c94a38840f54b062b8739d"
+                        class="img-fluid" alt="loginPhoto">
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 {include file="footer.tpl"}
