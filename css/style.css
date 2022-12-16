@@ -1,0 +1,56 @@
+html, body {
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav li.nav-item a:hover {
+    color: #ffc107;
+}
+
+#wrapper {
+    height: 60%;
+    width: 100%;
+    display: table;
+    overflow: hidden;
+}
+
+#contenedor {
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+}
+
+#listedSong {
+    text-decoration: none;
+    color: black;
+}
+
+.selectForm:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 1px #ffc107;
+
+}
+
+#divContent {
+    margin: 0 auto;
+    border: none;
+}
+
+.yellow {
+    text-decoration: none;
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.yellow:hover {
+    color: #cc9901;
+}
+
+#bootstrap-overrides input:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 1px #ffc107;
+  }
