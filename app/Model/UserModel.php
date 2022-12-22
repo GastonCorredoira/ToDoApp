@@ -30,10 +30,13 @@ class UserModel
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    function modifyUsername($data, $email)
+    function modifyUsername($data, $email, $username)
     {
-        $query = $this->db->prepare("UPDATE `users` SET `username`=? WHERE `email` = ?");
-        $query->execute([$data, $email]);
+        $changeTableName = $this->db->prepare("ALTER TABLE " . $username . " RENAME TO " . $data . ";");
+        $changeTableName->execute([]);
+        $changeUserName = $this->db->prepare("UPDATE `users` SET `username`=? WHERE `email` = ?");
+        $changeUserName->execute([$data, $email]);
+        
     }
 
     function modifyEmail($data, $email)

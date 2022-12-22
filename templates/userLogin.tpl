@@ -20,6 +20,7 @@
                                 <input type="password" class="form-control" name="password" id="password" required>
                             </div>
                             <input type="submit" id="signUpBtn" value="Log in"></input>
+                            <p>{$error}</p>
                         </form>
                     </div>
                 </div>

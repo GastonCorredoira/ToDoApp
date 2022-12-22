@@ -12,9 +12,9 @@ class LoginView
         $this->smarty = new Smarty();
     }
 
-    function showLogin($param = "")
+    function showLogin($error = "")
     {
-        $this->smarty->assign('param', $param);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/userLogin.tpl');
     }
 }

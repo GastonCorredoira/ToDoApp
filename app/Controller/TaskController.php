@@ -2,8 +2,8 @@
 
 require_once './app/Model/TaskModel.php';
 
-require_once './app/View/AlbumView.php';
-require_once './app/View/FormAlbumView.php';
+require_once './app/View/TaskView.php';
+require_once './app/View/FormTaskView.php';
 
 require_once './Helpers/AuthHelper.php';
 
@@ -21,55 +21,44 @@ class TaskController
     {
         $this->model = new TaskModel();
 
-        $this->view = new AlbumView();
-        $this->formView = new FormAlbumView();
+        $this->view = new TaskView();
+        $this->formView = new FormTaskView();
 
         $this->authHelper = new AuthHelper();
     }
 
-    function showAllAlbums()
+    function addTask()
     {
-        $this->authHelper->startSession();
-
-        $username = $_SESSION["username"];
-
-        $tasks = $this->model->getAll($username);
-        $this->view->showAll($tasks);
-    }
-
-    function createAlbum()
-    {
-        
-        
         $this->authHelper->checkLoggedIn();
-        
-        
         
         $task = $this->formView->getData();
         var_dump($task);
         $username = $_SESSION["username"];
         $this->model->upload($username, $task);
-        header("Location: " . BASE_URL . "album/add");
+        header("Location: " . BASE_URL);
     }
 
-    function deleteAlbum($id)
-    {
+    function deleteTask($id) {
         $this->authHelper->checkLoggedIn();
-        $this->authHelper->verifyAdmin();
 
-        $songs = $this->songModel->getFromAlbum($id);
-        if (count($songs) == 0) {
-            $this->model->delete($id);
-            header("Location: " . BASE_URL . "albums");
-        } else {
-            $this->view->deleteError($id, $songs);
-        }
+        $username = $this->authHelper->getUsername();
+
+        $this->model->delete($id, $username);
+
+        header("Location: " . BASE_URL);
+    }
+
+    function editTask($id) {
+        $this->authHelper->checkLoggedIn();
+
+        $username = $this->authHelper->getUsername();
+
+
     }
 
     function modifyAlbum()
     {
         $this->authHelper->checkLoggedIn();
-        $this->authHelper->verifyAdmin();
 
         $album = $this->formView->getData();
 
@@ -77,16 +66,7 @@ class TaskController
         header("Location: " . BASE_URL);
     }
 
-    function deleteSongsFromAlbum($id)
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->authHelper->verifyAdmin();
-
-        $this->songModel->deleteFromAlbum($id);
-        header("Location: " . BASE_URL . "album/view/" . $id);
-    }
-
-    function albumForm($type, $albumID)
+    function taskForm($type, $albumID)
     {
         $this->authHelper->checkLoggedIn();
         $this->authHelper->verifyAdmin();

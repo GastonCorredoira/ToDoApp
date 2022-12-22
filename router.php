@@ -25,7 +25,7 @@ $authHelper = new AuthHelper();
 
 switch ($params[0]) {
 
-        // LOGIN, LOGOUT, AUTH
+        // PAGE MODEL
     case 'login':
         $loginController->login();
         break;
@@ -44,66 +44,19 @@ switch ($params[0]) {
     case 'home':
         $pageController->showHome();
         break;
+
+        // TASK MODEL
     case 'addTask':
-        $taskController->createAlbum();
+        $taskController->addTask();
         break;
-
-        // SONG
-    case 'task':
-        switch ($params[1]) {
-            case 'info':
-                $songController->showSongByID($params[2]);
-                break;
-            case 'add':
-                $songController->songForm($params[1], null);
-                break;
-            case 'modify':
-                $songController->songForm("edit", $params[2]);
-                break;
-            case 'delete':
-                $songController->deleteSong($params[2]);
-                break;
-
-                // MODELS
-            case 'create':
-                $songController->createSong();
-                break;
-            case 'edit':
-                $songController->modifySong();
-                break;
-        }
+    case 'delete':
+        $taskController->deleteTask($params[1]);
         break;
+    case 'edit':
+        $taskController->editTask($params[1]);
 
-        // ALBUM
-    case 'album':
-        switch ($params[1]) {
-            case 'add':
-                $taskController->albumForm($params[1], null);
-                break;
-            case 'modify':
-                $taskController->albumForm("edit", $params[2]);
-                break;
-            case 'delete':
-                $taskController->deleteAlbum($params[2]);
-                break;
-            case 'deleteSongs':
-                $taskController->deleteSongsFromAlbum($params[2]);
-                break;
 
-                // MODELS
-            case 'addTask':
-                $taskController->createAlbum();
-                break;
-            case 'edit':
-                $taskController->modifyAlbum();
-                break;
-        }
-        break;
-    case 'albums':
-        $taskController->showAllAlbums();
-        break;
-
-        // OTHER MODELS
+        // USER MODEL
     case 'userProfile':
         $userController->showProfile();
         break;

@@ -48,15 +48,13 @@ class UserController
             $email = $this->authHelper->getEmail();
 
             if ($type == "username") {
-                $this->model->modifyUsername($data, $email);
+                $username = $this->authHelper->getUsername();
+                $this->model->modifyUsername($data, $email, $username);
             }
             if ($type == "email") {
                 $this->model->modifyEmail($data, $email);
             }
         }
-
-
-
         $this->authHelper->logout();
     }
 }

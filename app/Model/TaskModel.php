@@ -35,9 +35,9 @@ class TaskModel
         
     }
 
-    function delete($id)
+    function delete($id, $username)
     {
-        $query = $this->db->prepare("DELETE FROM `album` WHERE `id` = ?");
+        $query = $this->db->prepare("DELETE FROM " . strtolower($username) .  " WHERE `id` = ?");
         $query->execute([$id]);
     }
 }

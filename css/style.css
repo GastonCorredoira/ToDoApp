@@ -116,8 +116,19 @@ nav li.nav-item a:hover {
 .hidden {
     text-decoration: none;
     color: black;
+    background-color: transparent;
+    border: none;
 }
 
 .hidden:hover {
     color: black;
+}
+
+.leftSide {
+    background-color: blue;
+    height: 100vh;
+}
+
+.rightSide {
+    background-color: red;
 }
