@@ -53,7 +53,9 @@ class TaskController
 
         $username = $this->authHelper->getUsername();
 
+        $task = $this->model->get($id, $username);
 
+        $this->formView->showForm($task);
     }
 
     function modifyAlbum()
@@ -64,19 +66,5 @@ class TaskController
 
         $this->model->modify($album);
         header("Location: " . BASE_URL);
-    }
-
-    function taskForm($type, $albumID)
-    {
-        $this->authHelper->checkLoggedIn();
-        $this->authHelper->verifyAdmin();
-
-        if ($type == "edit") {
-            $album = $this->model->get($albumID);
-        } else {
-            $type = "create";
-            $album = null;
-        }
-        $this->formView->showForm($type, $album);
     }
 }

@@ -8,9 +8,9 @@ class TaskModel
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_todoapp;charset=utf8', 'root', '');
     }
 
-    function get($id)
+    function get($id, $username)
     {
-        $query = $this->db->prepare('SELECT * FROM album WHERE id = ?');
+        $query = $this->db->prepare("SELECT * FROM " . $username . " WHERE id = ?");
         $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);
     }

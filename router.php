@@ -54,6 +54,7 @@ switch ($params[0]) {
         break;
     case 'edit':
         $taskController->editTask($params[1]);
+        break;
 
 
         // USER MODEL

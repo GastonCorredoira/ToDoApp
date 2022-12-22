@@ -13,11 +13,10 @@ class FormTaskView
         $this->smarty = new Smarty();
     }
 
-    function showForm($type, $album)
+    function showForm($task)
     {
-        $this->smarty->assign('type', $type);
-        $this->smarty->assign('album', $album);
-        $this->smarty->display('templates/albumForm.tpl');
+        $this->smarty->assign('task', $task);
+        $this->smarty->display('templates/taskForm.tpl');
     }
 
     function getData()

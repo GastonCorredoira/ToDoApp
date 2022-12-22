@@ -86,7 +86,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="completeTask{$task->id}">Mark as completed</a></li>
                             <li><a class="dropdown-item" href="progressTask/{$task->id}">Mark in progress</a></li>
-                            <li><a class="dropdown-item" href="edit->{$task->id}">Edit</a></li>
+                            <li><a class="dropdown-item" href="edit/{$task->id}">Edit</a></li>
                             <li><a class="dropdown-item" href="delete/{$task->id}">Delete</a></li>
                         </ul>
                     </div>
