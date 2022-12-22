@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -8,7 +9,7 @@ html, body {
 }
 
 nav li.nav-item a:hover {
-    color: #ffc107;
+    color: #D6FFB2;
 }
 
 #wrapper {
@@ -16,8 +17,17 @@ nav li.nav-item a:hover {
     width: 100%;
     display: table;
     overflow: hidden;
-    background-image: url('https://raw.githubusercontent.com/GastonCorredoira/ToDoApp/master/img/logInBackground.png');
+}
+
+#newUser {
+    background-image: url('https://raw.githubusercontent.com/GastonCorredoira/ToDoApp/master/img/logInPattern.png');
     background-size: cover;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    object-fit: contain;
 }
 
 #contenedor {
@@ -32,9 +42,13 @@ nav li.nav-item a:hover {
 }
 
 .selectForm:focus {
-    border-color: #ffc107;
-    box-shadow: 0 0 1px #ffc107;
+    border-color: #D6FFB2;
+    box-shadow: 0 0 1px #D6FFB2;
 
+}
+
+#logInInput {
+    border-top-style: hidden !important;
 }
 
 #divContent {
@@ -44,15 +58,66 @@ nav li.nav-item a:hover {
 
 .yellow {
     text-decoration: none;
-    color: #ffc107;
+    color: #D6FFB2;
     font-weight: bold;
 }
 
 .yellow:hover {
-    color: #cc9901;
+    color: #D6FFB2;
+}
+
+#bootstrap-overrides .form-control {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-radius: 0;
 }
 
 #bootstrap-overrides input:focus {
-    border-color: #ffc107;
-    box-shadow: 0 0 1px #ffc107;
-  }
+    border-color: #D6FFB2;
+    box-shadow: 0 0 1px #D6FFB2;
+}
+
+#btn-green {
+    background-color: #D6FFB2 !important;
+    color: #D6FFB2;
+}
+
+#signUpBtn {
+    border: 3px solid #D6FFB2;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#signUpBtn:hover {
+    transition-duration: 1s;
+    background-color: #D6FFB2;
+}
+
+#searchBtn {
+    color: black;
+    background-color: #D6FFB2;
+    border: 1px solid #a4c488;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+#card-flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.optionButton {
+    margin-right:15px;
+    margin-top: 15px;
+}
+
+.hidden {
+    text-decoration: none;
+    color: black;
+}
+
+.hidden:hover {
+    color: black;
+}

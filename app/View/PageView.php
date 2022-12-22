@@ -12,13 +12,9 @@ class PageView
         $this->smarty = new Smarty();
     }
 
-    function showHome($results, $albums, $songs, $randomSongs, $randomAlbums)
+    function showHome($tasks)
     {
-        $this->smarty->assign('results', $results);
-        $this->smarty->assign('albums', $albums);
-        $this->smarty->assign('songs', $songs);
-        $this->smarty->assign('randomSongs', $randomSongs);
-        $this->smarty->assign('randomAlbums', $randomAlbums);
+        $this->smarty->assign('tasks', $tasks);
         $this->smarty->display('templates/home.tpl');
     }
 

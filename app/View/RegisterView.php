@@ -25,7 +25,7 @@ class RegisterView
 
     function getRegisterFormData()
     {
-        if (!empty($_POST['email']) && !empty($_POST['password'])) {
+        if (!empty($_POST['email']) && !empty($_POST['password'] && !empty($_POST['username']))) {
             $user = [
                 "email" => $_POST['email'],
                 "username" => $_POST['username'],

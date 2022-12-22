@@ -1,14 +1,13 @@
 <?php
 
-require_once './app/Model/AlbumModel.php';
-require_once './app/Model/SongModel.php';
+require_once './app/Model/TaskModel.php';
 
 require_once './app/View/AlbumView.php';
 require_once './app/View/FormAlbumView.php';
 
 require_once './Helpers/AuthHelper.php';
 
-class AlbumController
+class TaskController
 {
 
     private $model;
@@ -20,8 +19,7 @@ class AlbumController
 
     function __construct()
     {
-        $this->model = new AlbumModel();
-        $this->songModel = new SongModel();
+        $this->model = new TaskModel();
 
         $this->view = new AlbumView();
         $this->formView = new FormAlbumView();
@@ -33,17 +31,24 @@ class AlbumController
     {
         $this->authHelper->startSession();
 
-        $albums = $this->model->getAll();
-        $this->view->showAll($albums);
+        $username = $_SESSION["username"];
+
+        $tasks = $this->model->getAll($username);
+        $this->view->showAll($tasks);
     }
 
     function createAlbum()
     {
+        
+        
         $this->authHelper->checkLoggedIn();
-        $this->authHelper->verifyAdmin();
-
-        $album = $this->formView->getData();
-        $this->model->upload($album);
+        
+        
+        
+        $task = $this->formView->getData();
+        var_dump($task);
+        $username = $_SESSION["username"];
+        $this->model->upload($username, $task);
         header("Location: " . BASE_URL . "album/add");
     }
 

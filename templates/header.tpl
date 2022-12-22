@@ -26,20 +26,6 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="home">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="albums">View all Albums</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="songs">View all Songs</a>
-            </li>
-            {if $smarty.session.rol == "Admin"}
-              <li class="nav-item">
-                <a class="nav-link" href="album/add">Add a new Album</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="song/add">Add a new Song</a>
-              </li>
-            {/if}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {$smarty.session.username}
@@ -52,17 +38,11 @@
                 <li><a class="dropdown-item" href="logout">Logout</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login">Log In into an account</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register">Register a new account</a>
-            </li>
           </ul>
           <form class="d-flex" role="search" method="POST" action="search" name="searchForm" id="searchForm">
-            <input class="form-control me-2" type="search" placeholder="Search Album/Song" aria-label="Search"
+            <input class="form-control me-2" type="search" placeholder="Search a Task" aria-label="Search"
               name="search" id="name=" search">
-          <button class="btn btn-outline-warning" type="submit">Search</button>
+          <button id="searchBtn" type="submit">Search</button>
           </form>
         </div>
       </div>

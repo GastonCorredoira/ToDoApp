@@ -22,28 +22,13 @@ class FormAlbumView
 
     function getData()
     {
-        if (
-            $_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg"
-            || $_FILES['input_name']['type'] == "image/png"
-        ) {
-            $album = [
-                "id" => $_POST['id'],
-                "albumname" => $_POST['albumname'],
-                "artist" => $_POST['artist'],
-                "genre" => $_POST['genre'],
-                "year" => $_POST['year'],
-                "logo" => $_FILES['input_name']['tmp_name'],
-            ];
-        } else {
-            $album = [
-                "id" => $_POST['id'],
-                "albumname" => $_POST['albumname'],
-                "artist" => $_POST['artist'],
-                "genre" => $_POST['genre'],
-                "year" => $_POST['year'],
-                "logo" => null,
-            ];
-        }
-        return $album;
+        $task = [
+            "title" => $_POST['title'],
+            "description" => $_POST['description'],
+            "priority" => $_POST['priority'],
+            "done" => $_POST['done'],
+        ];
+
+        return $task;
     }
 }

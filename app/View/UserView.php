@@ -12,9 +12,8 @@ class UserView
         $this->smarty = new Smarty();
     }
 
-    function showProfileView($profilepicture)
+    function showProfileView()
     {
-        $this->smarty->assign('profilepicture', $profilepicture);
         $this->smarty->display('templates/userProfile.tpl');
     }
 

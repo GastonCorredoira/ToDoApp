@@ -25,8 +25,7 @@ class UserController
         $this->authHelper->checkLoggedIn();
 
         $email = $this->authHelper->getEmail();
-        $profilepicture = $this->model->getProfilePicture($email);
-        $this->view->showProfileView($profilepicture);
+        $this->view->showProfileView();
     }
 
     function showUserEditForm($type)
@@ -44,12 +43,6 @@ class UserController
             $data = $this->view->getPassword();
             $email = $this->authHelper->getEmail();
             $this->model->modifyPassword($data, $email);
-        } else if ($type == "profilepicture") {
-            if ($_FILES['input_name']['type'] == "image/jpg" || $_FILES['input_name']['type'] == "image/jpeg" || $_FILES['input_name']['type'] == "image/png") {
-
-                $email = $this->authHelper->getEmail();
-                $this->model->save($_FILES['input_name']['tmp_name'], $email);
-            }
         } else {
             $data = $this->view->getData();
             $email = $this->authHelper->getEmail();

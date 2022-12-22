@@ -35,6 +35,7 @@
                                 <div id="emailHelp" class="form-text">We recommend that you set a strong password.</div>
                             </div>
                             <input type="submit" class="btn btn-warning" value="Register"></button>
+                            <p style="color: red;">{$error}<p>
                             <p>Already a member? <a href="login" class="yellow">Sign in</a></p>
                         </form>
                     </div>

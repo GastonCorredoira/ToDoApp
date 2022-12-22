@@ -1,65 +1,78 @@
 {include file="header.tpl"}
 
-{if empty($smarty.session)}
-    <div class="alert alert-warning" role="alert" style="text-align: center;">
-        <p>You are not logged in, if you want to access all our features, please <a href="login" class="alert-link">log
-                in</a></p>
-    </div>
-{/if}
-
-<h3>Best albums for you</h3>
 
 <div class="container text-center">
-    <div class="row row-cols">
-        {foreach from=$randomAlbums item=randomAlbum}
-            <div class="col">
-                <div class="card shadow mb-5 bg-body rounded" style="width: 18rem; margin-top: 30px;">
-                    <img src="{$randomAlbum->logo}" class="card-img-top" alt="album{$randomAlbum->id}logo">
-                    <div class="card-body">
-                        <h5 class="card-title">{$randomAlbum->albumname}</h5>
-                        <p class="card-text">{$randomAlbum->artist}</p>
-                        <a href="album/view/{$randomAlbum->id}" class="btn btn-warning">View Album</a>
-                        <div>
-                            {if !empty($smarty.session)}
-                                {if $smarty.session.rol == "Admin"}
-                                    <a href="album/modify/{$randomAlbum->id}" style="margin-top: 10px;"
-                                        class="btn btn-sm btn-outline-warning">Modify</a>
-                                    <a href="album/delete/{$randomAlbum->id}" style="margin-top: 10px;"
-                                        class="btn btn-sm btn-outline-warning">Delete</a>
-                                {/if}
-                            {/if}
+    <div class="card shadow mb-5 bg-body rounded" style="margin-top: 30px;">
+        <div class="card-body">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Add new task
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+
+                            <h5 class="card-title">Add new task</h5>
+                            <form method="POST" action="addTask" name="addTask" id="addTask"
+                                enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" id="title" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Priority</label>
+                                    <input type="text" class="form-control" name="priority" id="priority" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Done</label>
+                                    <input type="number" class="form-control" name="done" id="done" required>
+                                </div>
+                                <input type="submit" id="signUpBtn" value="Add task"></button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
-        {/foreach}
+        </div>
     </div>
 </div>
 
-<h3>Best song's pick for you</h3>
-
-<ul class="list-group">
-    {foreach from=$randomSongs item=randomSong}
-        <li class="list-group-item">
-            {foreach from=$albums item=album}
-                {if ($album->id) == ($randomSong->id_album_fk)}
-                    <a href="song/info/{$randomSong->id}"><img src="{$album->logo}" class="rounded" width=30 alt="albumLogo"></a>
-                {/if}
-            {/foreach}
-            <a href="song/info/{$randomSong->id}" id="listedSong">{$randomSong->name}</a>
-            {foreach from=$albums item=album}
-                {if ($album->id) == ($randomSong->id_album_fk)}
-                    (<a id="listedSong" href="album/view/{$randomSong->id_album_fk}">{$album->albumname}</a>)
-                {/if}
-            {/foreach}
-            {if !empty($smarty.session)}
-                {if $smarty.session.rol == "Admin"}
-                    <a href="song/modify/{$randomSong->id}" class="btn btn-sm btn-outline-warning">Modify</a>
-                    <a href="song/delete/{$randomSong->id}" class="btn btn-sm btn-outline-warning">Delete</a>
-                {/if}
-            {/if}
-        </li>
-    {/foreach}
-</ul>
+<div class="container">
+    <div class="card shadow mb-5 bg-body rounded">
+        <h3>Your tasks:</h3>
+        <hr>
+        {foreach from=$tasks item=task}
+            <div id="card-flex">
+                <div class="card-body">
+                    <h5 class="card-title">{$task->title}</h5>
+                    <p>{$task->description}</p>
+                </div>
+                <div class="dropdown optionButton">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Options
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="completeTask{$task->id}">Mark as completed</a></li>
+                        <li><a class="dropdown-item" href="progressTask/{$task->id}">Mark in progress</a></li>
+                        <li><a class="dropdown-item" href="edit->{$task->id}">Edit</a></li>
+                        <li><a class="dropdown-item" href="delete/{$task->id}">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        {/foreach}
+    </div>
+</div>
 
 {include file="footer.tpl"}

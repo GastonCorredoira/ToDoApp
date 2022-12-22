@@ -1,8 +1,7 @@
 <?php
 
 require_once 'app/Controller/PageController.php';
-require_once 'app/Controller/SongController.php';
-require_once 'app/Controller/AlbumController.php';
+require_once 'app/Controller/TaskController.php';
 require_once 'app/Controller/LoginController.php';
 require_once 'app/Controller/RegisterController.php';
 require_once 'app/Controller/UserController.php';
@@ -18,8 +17,7 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 $pageController = new PageController();
-$songController = new SongController();
-$albumController = new AlbumController();
+$taskController = new TaskController();
 $loginController = new LoginController();
 $registerController = new RegisterController();
 $userController = new UserController();
@@ -46,9 +44,12 @@ switch ($params[0]) {
     case 'home':
         $pageController->showHome();
         break;
+    case 'addTask':
+        $taskController->createAlbum();
+        break;
 
         // SONG
-    case 'song':
+    case 'task':
         switch ($params[1]) {
             case 'info':
                 $songController->showSongByID($params[2]);
@@ -72,40 +73,34 @@ switch ($params[0]) {
                 break;
         }
         break;
-    case 'songs':
-        $pageController->showAllSongs();
-        break;
 
         // ALBUM
     case 'album':
         switch ($params[1]) {
-            case 'view':
-                $pageController->showAlbum($params[2]);
-                break;
             case 'add':
-                $albumController->albumForm($params[1], null);
+                $taskController->albumForm($params[1], null);
                 break;
             case 'modify':
-                $albumController->albumForm("edit", $params[2]);
+                $taskController->albumForm("edit", $params[2]);
                 break;
             case 'delete':
-                $albumController->deleteAlbum($params[2]);
+                $taskController->deleteAlbum($params[2]);
                 break;
             case 'deleteSongs':
-                $albumController->deleteSongsFromAlbum($params[2]);
+                $taskController->deleteSongsFromAlbum($params[2]);
                 break;
 
                 // MODELS
-            case 'create':
-                $albumController->createAlbum();
+            case 'addTask':
+                $taskController->createAlbum();
                 break;
             case 'edit':
-                $albumController->modifyAlbum();
+                $taskController->modifyAlbum();
                 break;
         }
         break;
     case 'albums':
-        $albumController->showAllAlbums();
+        $taskController->showAllAlbums();
         break;
 
         // OTHER MODELS
@@ -126,9 +121,6 @@ switch ($params[0]) {
         break;
     case 'editprofilepicture':
         $userController->editUserData('profilepicture');
-        break;
-    case 'search':
-        $pageController->showSearchResult();
         break;
     default:
         echo ('404 Page not found');

@@ -22,8 +22,22 @@ class RegisterController
 
     function verifyRegister()
     {
+
         $user = $this->view->getRegisterFormData();
-        $this->model->register($user);
-        header("Location: " . BASE_URL . "login");
+        $test = $this->model->checkExistence($user);
+        $array = get_object_vars($test);
+        $boolean = 1;
+        foreach ($array as $key => $value) {
+            $boolean = $value;
+        }
+        echo $boolean;
+
+        if ($boolean == 0) {
+            $this->model->register($user);
+            header("Location: " . BASE_URL . "login");
+        }
+        else {
+            $this->view->showRegister("Email or username already used");
+        }
     }
 }

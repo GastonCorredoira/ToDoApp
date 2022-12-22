@@ -1,13 +1,13 @@
 {include file="header.tpl"}
 <div id="wrapper">
     <div id="contenedor">
-        <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" id="divContent" style="max-width: 1200px;">
+        <div class="card mb-3 shadow p-3 mb-5 bg-body rounded" id="divContent" style="max-width: 1200px; height: 60%; text-align: center;">
             <div class="row g-0">
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h3 style="margin-bottom: 10px;">Sign In</h3>
+                        <h3 style="margin-bottom: 10px;">Welcome back,</h3>
                         <form method="POST" action="verifyLogin" name="login" id="login">
-                            <div class="mb-3">
+                            <div class="mb-3" style="text-align: center;">
                                 <label class="form-label">
                                     <h5>Email</h5>
                                 </label>
@@ -19,17 +19,16 @@
                                 </label>
                                 <input type="password" class="form-control" name="password" id="password" required>
                             </div>
-                            <input type="submit" class="btn btn-warning" value="Log in"></button>
-                            <p style="margin-top: 20px;">Not a member? <a href="register" class="yellow">Sign up</a></p>
-                            <p>Don't you want to log in? <a href="home" class="yellow">Enter anyways</a></p>
-                            <p>{$param}
-                            <p>
+                            <input type="submit" id="signUpBtn" value="Log in"></input>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="https://i.scdn.co/image/ab67706f0000000395c94a38840f54b062b8739d"
-                        class="img-fluid" alt="loginPhoto">
+                <div class="col-md-4" id='newUser'>
+                <div class="card-body">
+                    <h3 style="margin: 15px 0 10px 0;">New here?</h3>
+                    <p>Sign up and discover great amount of new opportunities! Click the button below</p>
+                    <button type="submit" id="signUpBtn" value="Log in"><a href="register" class="hidden">SIGN UP</a></button>
+                    </div>
                 </div>
             </div>
         </div>
